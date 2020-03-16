@@ -5,37 +5,22 @@ import UserInput from './UserInput/UserInput';
 
 class App extends Component {
   state = {
-    persons: [
-      {name: 'Sylvie'},
-      {name: 'Xavier'},
-      {name: 'Yannick'},
-      {name: 'Maman'},
-      {name: 'Papa'}
-    ],
+    username: 'Sylvie'
   };
 
-  changeNameHandler = (newName) => {
-    this.setState( {
-      persons: [
-        {name: newName},
-        {name: 'Xavier'},
-        {name: 'Yannick'},
-        {name: 'Maman'},
-        {name: 'Papa'}
-      ],}
-    );
+  usernameChangeHandler = (event) => {
+      this.setState({username: event.target.value})
   };
 
   render () {
     return (
       <div className="App">
-        <p>Hello</p>
-        <UserOutput name={this.state.persons[0].name}/>
-        <UserOutput name={this.state.persons[1].name}/>
-        <UserOutput name={this.state.persons[2].name}/>
-        <UserOutput name={this.state.persons[3].name}/>
-        <UserOutput name={this.state.persons[4].name}/>
-        <UserInput/>
+        <UserInput
+            changed={this.usernameChangeHandler}
+            currentName={this.state.username}
+        />
+        <UserOutput name={this.state.username}/>
+        <UserOutput name={this.state.username}/>
       </div>
     );
   };
